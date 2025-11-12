@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Stack+Sans+Text:wght@200..700&display=swap');
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 80px 40px;
+    margin-top: 200px;
+    gap: 40px;
+}
+
+/* Formulário (30%) */
+.form {
+    flex: 0 0 30%;
+    /* 30% da largura total */
+    background-color: rgb(247, 247, 247);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    height: 570px;
+}
+
+.form h2 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1e293b;
+    font-size: 22px;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 700;
+}
+
+.form form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form input {
+    width: 100%;
+    /* agora ocupa todo o espaço do container */
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form input:focus {
+    border-color: #2563eb;
+}
+
+/* Botão de Cadastrar */
+.form button {
+    width: 9em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    margin-top: 20px;
+    align-self: center;
+}
+
+.form button:before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #00A97F 0%, #00A97F 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.form button:hover:before {
+    width: 9em;
+}
+
+/* Lista (70%) */
+.list {
+    flex: 0 0 70%;
+    /* 70% da largura total */
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.list h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1e293b;
+    font-size: 20px;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background-color: #464f64;
+    color: white;
+    font-weight: 600;
+}
+
+td {
+    font-size: 17px;
+    font-family: "Josefin Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200px;
+    font-style: normal;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Botão de Ações na lista */
+.list button {
+    --color: #a90600;
+    --color2: rgb(10, 25, 30);
+    padding: 0.8em 1.75em;
+    background-color: transparent;
+    border-radius: 6px;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    font-weight: 300;
+    font-size: 17px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
+}
+
+.list button::after,
+.list button::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+}
+
+.list button::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+}
+
+.list button:hover::before {
+    transform: skew(45deg) rotate(180);
+}

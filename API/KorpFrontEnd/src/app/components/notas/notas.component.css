@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Stack+Sans+Text:wght@200..700&display=swap');
+
+.notas-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 80px 40px;
+    margin-top: 200px;
+    gap: 40px;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+/* Criar nota (30%) */
+.criar-nota {
+    flex: 0 0 30%;
+    background-color: rgb(247, 247, 247);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    height: auto;
+}
+
+.criar-nota h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1e293b;
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.criar-nota label {
+    font-size: 14px;
+    color: #1e293b;
+}
+
+.criar-nota input,
+.criar-nota select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.criar-nota input:focus,
+.criar-nota select:focus {
+    border-color: #2563eb;
+}
+
+/* Itens */
+.itens {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-row input[type="number"] {
+    width: 80px;
+}
+
+/* Botões de item */
+.item-row button,
+.itens>button {
+    --color: #00A97F;
+    background-color: transparent;
+    border: 1px solid var(--color);
+    color: var(--color);
+    border-radius: 30px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.item-row button:hover,
+.itens>button:hover {
+    background-color: var(--color);
+    color: #fff;
+}
+
+/* Botão principal */
+.actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.actions button {
+    width: 9em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+.actions button:before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #00A97F 0%, #00A97F 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+
+.actions button:hover:before {
+    width: 9em;
+}
+
+/* Lista (70%) */
+.lista-notas {
+    flex: 0 0 70%;
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.lista-notas h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #1e293b;
+    font-size: 20px;
+}
+
+/* Tabela */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background-color: #464f64;
+    color: white;
+    font-weight: 600;
+}
+
+td {
+    font-size: 17px;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Botão da lista */
+.lista-notas button {
+    --color: #a90600;
+    --color2: rgb(10, 25, 30);
+    padding: 0.8em 1.75em;
+    background-color: transparent;
+    border-radius: 6px;
+    border: .3px solid var(--color);
+    transition: .5s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.notas-page {
+    padding: 40px;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+/* Overlay e modal */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal {
+    width: 500px;
+    max-width: 90%;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.modal h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+/* Botão do modal */
+.modal button {
+    display: block;
+    margin: 0 auto;
+    background-color: #00A97F;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.modal button:hover {
+    opacity: 0.9;
+}
+
+/* Tabela */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table th {
+    background-color: #464f64;
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Card */
+.card {
+    background-color: #f7f7f7;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+
+/* Botões */
+button {
+    cursor: pointer;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}

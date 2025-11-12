@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="form">
+    <h2>{{ editando ? 'Editar Produto' : 'Cadastrar Produto' }}</h2>
+
+    <form (ngSubmit)="salvar()">
+      <input type="number" [(ngModel)]="novo.codigo" name="codigo" placeholder="Código" required />
+      <input type="text" [(ngModel)]="novo.descricao" name="descricao" placeholder="Descrição" required />
+      <input type="number" [(ngModel)]="novo.saldo" name="saldo" placeholder="Saldo" required />
+
+      <button type="submit">
+        {{ editando ? 'Salvar Alterações' : 'Cadastrar' }}
+      </button>
+      <button type="button" *ngIf="editando" (click)="cancelarEdicao()">Cancelar</button>
+    </form>
+  </div>
+
+  <div class="list">
+    <h3>Lista de Produtos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Descrição</th>
+          <th>Saldo</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of produtos">
+          <td>{{ p.codigo }}</td>
+          <td>{{ p.descricao }}</td>
+          <td>{{ p.saldo }}</td>
+          <td>
+            <button (click)="editar(p)">Editar</button>
+            <button (click)="excluir(p.codigo)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

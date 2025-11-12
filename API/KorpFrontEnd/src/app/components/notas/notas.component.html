@@ -1,0 +1,82 @@
+<div class="notas-page">
+
+  <div *ngIf="loading" class="overlay">
+    <div class="spinner">Processando...</div>
+  </div>
+
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <section class="criar-nota card">
+    <h3>Criar nova nota</h3>
+    <div>
+      <label>Número: </label>
+      <input type="number" [(ngModel)]="numeroEmCriacao" disabled />
+    </div>
+
+    <div class="itens">
+      <div *ngFor="let it of itens; let i = index" class="item-row">
+        <select [(ngModel)]="it.produtoId" name="produto{{i}}" (change)="onProdutoChange(i)">
+          <option [ngValue]="undefined">-- selecione produto --</option>
+          <option *ngFor="let p of produtos" [value]="p.codigo">{{p.codigo}} - {{p.descricao}} (saldo: {{p.saldo}})</option>
+        </select>
+
+        <input type="number" [(ngModel)]="it.quantidade" min="1" />
+
+        <button (click)="removerItem(i)" type="button">Remover</button>
+      </div>
+
+      <button (click)="adicionarItem()" type="button">Adicionar item</button>
+    </div>
+
+    <div class="actions">
+      <button (click)="criarNota()" [disabled]="loading">Criar Nota</button>
+    </div>
+  </section>
+
+  <section class="lista-notas card">
+    <h3>Notas existentes</h3>
+    <table *ngIf="notas.length; else semNotas" class="table">
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Data</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let n of notas">
+          <td>{{ n.numero }}</td>
+          <td>{{ n.dataEmissao | date:'short' }}</td>
+          <td>{{ n.status }}</td>
+          <td>
+            <button (click)="verItens(n)">Ver Itens</button>
+            <button (click)="fecharNota(n.numero)" [disabled]="n.status !== 'Aberta' || loading">Imprimir / Fechar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #semNotas>
+      <p>Nenhuma nota encontrada.</p>
+    </ng-template>
+  </section>
+
+  <!-- Modal de detalhes -->
+   
+  <div *ngIf="notaSelecionada" class="overlay">
+    
+    <div class="modal card">
+      <button class="close-btn" (click)="fecharModal()">×</button>
+      <br>
+      <h3>Itens da Nota #{{ notaSelecionada.numero }}</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+        
+        <tbody>
