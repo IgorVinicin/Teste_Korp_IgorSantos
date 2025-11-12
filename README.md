@@ -1,64 +1,52 @@
 Sistema de Emissão de Nota Fiscal
-Descrição
+# Visão Geral
 
-Aplicação web desenvolvida em Angular integrada a uma API em C#, que permite:
+Este projeto consiste em um sistema completo para emissão e gerenciamento de notas fiscais, integrado a uma API em C# e desenvolvido com Angular no front-end.
+O objetivo é facilitar o controle de produtos, criação de notas e acompanhamento de faturamento, com uma interface clara e responsiva.
 
-Cadastrar produtos com código, descrição e saldo.
+# Funcionalidades Principais
 
-Criar notas fiscais com múltiplos itens.
+Cadastro de Produtos: criação, edição e exclusão de produtos com código, descrição e saldo.
 
-Fechar notas e registrar o faturamento.
+Criação de Notas Fiscais: inclusão de múltiplos itens por nota, com validação automática.
 
-Exibir avisos e mensagens de sucesso/erro.
+Fechamento de Notas: marcação de notas como concluídas e registro de faturamento.
 
-O sistema possui tratamento visual para erros, mensagens de sucesso e interface amigável para o usuário.
+Mensagens Interativas: exibição de alertas de erro e mensagens de sucesso.
 
-Funcionalidades
+Interface Responsiva: design limpo e organizado, com feedback visual ao usuário.
 
-Cadastro, edição e exclusão de produtos
+# Tecnologias Utilizadas
+Camada	Tecnologias
+Front-end	Angular, TypeScript, HTML5, CSS3
+Back-end	C# (.NET API)
+Banco de Dados	SQL Server
+Comunicação	HTTP/REST API
 
-Criação e fechamento de notas fiscais
 
-Validação automática dos itens da nota
-
-Exibição de avisos e faturamentos recentes
-
-Feedback visual com mensagens de sucesso e erro
-
-Tecnologias utilizadas
-
-Front-end: Angular, TypeScript, HTML5, CSS3
-Back-end: C# (.NET API)
-Banco de Dados: SQL Server
-
-Como executar
-
-Clonar o repositório:
-
+# Como Executar o Projeto
+1. Clonar o Repositório
 git clone <url-do-repositorio>
 
-
-Instalar dependências do front-end:
-
+2. Executar o Front-end (Angular)
 cd frontend
 npm install
 ng serve
-
-
-Executar a API em C#:
-
-Abra o projeto no Visual Studio
-
-Execute com IIS Express ou utilizando o comando:
-
-dotnet run
 
 
 Acesse no navegador:
 
 http://localhost:4200
 
-Autor
+3. # Executar o Back-end (C# API)
 
-Desenvolvido por Igor Vinicius Araújo Pece dos Santos
-Projeto de estudo e portfólio com foco em integração entre front-end e back-end.
+Abra o projeto no Visual Studio ou use o comando:
+
+dotnet run
+
+
+Certifique-se de que o banco de dados está configurado corretamente no arquivo appsettings.json.
+
+
+Igor Vinicius Araújo Pece dos Santos
+Projeto desenvolvido como estudo e portfólio, com foco na integração entre Angular e C#.
