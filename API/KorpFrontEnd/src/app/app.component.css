@@ -21,7 +21,8 @@
 .menu-title {
     flex: 1;
     text-align: center;
-
+    letter-spacing: 1px;
+    color: #cdeefd;
     font-size: 40px;
     font-weight: 600;
     margin: 0;
@@ -110,10 +111,19 @@
     background-color: #f6f8ff;
 }
 
-/* Garante que o conteúdo abaixo não fique escondido atrás do menu */
+
 main,
 section,
 .conteudo {
     padding-top: 70px;
-    /* espaço para o menu fixo */
+}
+
+.footer {
+    text-align: center;
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
 }

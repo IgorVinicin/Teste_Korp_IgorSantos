@@ -22,6 +22,10 @@ export class NotasComponent implements OnInit {
   notaSelecionada: NotaDto | null = null;
   itensDaNota: ItemNotaDto[] = [];
 
+  // Novos arrays para avisos e faturamento
+  avisos: string[] = [];
+  faturamento: { nota: number; valorTotal: number; data: string }[] = [];
+
   constructor(
     private notaSvc: NotaFiscalService,
     private prodSvc: ProdutoService
@@ -145,4 +149,7 @@ export class NotasComponent implements OnInit {
     this.notaSelecionada = null;
     this.itensDaNota = [];
   }
+
+
+  
 }

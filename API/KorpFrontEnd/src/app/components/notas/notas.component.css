@@ -4,13 +4,13 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 80px 40px;
+    padding: 80px 60px;
     margin-top: 200px;
     gap: 40px;
     font-family: "Josefin Sans", sans-serif;
 }
 
-/* Criar nota (30%) */
+/* Criar nota */
 .criar-nota {
     flex: 0 0 30%;
     background-color: rgb(247, 247, 247);
@@ -126,21 +126,20 @@
     width: 9em;
 }
 
-/* Lista (70%) */
+/* Lista de notas */
 .lista-notas {
-    flex: 0 0 70%;
+    flex: 0 0 60%;
     background-color: white;
-    padding: 25px;
+    padding: 25px 35px;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-right: 40px;
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
 }
 
-.lista-notas h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #1e293b;
-    font-size: 20px;
-}
 
 /* Tabela */
 .table {
@@ -161,6 +160,15 @@ th {
     font-weight: 600;
 }
 
+th:first-child {
+    border-top-left-radius: 10px;
+}
+
+th:last-child {
+    border-top-right-radius: 10px;
+}
+
+
 td {
     font-size: 17px;
 }
@@ -171,7 +179,7 @@ tbody tr:hover {
 
 /* Botão da lista */
 .lista-notas button {
-    --color: #a90600;
+    --color: #0049a9;
     --color2: rgb(10, 25, 30);
     padding: 0.8em 1.75em;
     background-color: transparent;
@@ -182,11 +190,37 @@ tbody tr:hover {
     overflow: hidden;
     cursor: pointer;
     z-index: 1;
+    font-weight: 300;
+    font-size: 17px;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    color: var(--color);
 }
 
-.notas-page {
-    padding: 40px;
-    font-family: "Josefin Sans", sans-serif;
+.lista-notas button::after,
+.lista-notas button::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 100%;
+    transform: skew(90deg) translate(-50%, -50%);
+    position: absolute;
+    inset: 50%;
+    left: 25%;
+    z-index: -1;
+    transition: .5s ease-out;
+    background-color: var(--color);
+}
+
+.lista-notas button::before {
+    top: -50%;
+    left: -25%;
+    transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
+    background-color: var(--color2);
+}
+
+.lista-notas button:hover::before {
+    transform: skew(45deg) rotate(180);
 }
 
 /* Overlay e modal */
@@ -218,11 +252,10 @@ tbody tr:hover {
     color: #1e293b;
 }
 
-/* Botão do modal */
 .modal button {
     display: block;
     margin: 0 auto;
-    background-color: #00A97F;
+    background-color: #c53800;
     color: white;
     border: none;
     border-radius: 30px;
@@ -234,27 +267,6 @@ tbody tr:hover {
     opacity: 0.9;
 }
 
-/* Tabela */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.table th,
-.table td {
-    padding: 10px;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-.table th {
-    background-color: #464f64;
-    color: white;
-}
-
-.table tbody tr:hover {
-    background-color: #f1f5f9;
-}
-
 /* Card */
 .card {
     background-color: #f7f7f7;
@@ -264,7 +276,7 @@ tbody tr:hover {
     margin-bottom: 20px;
 }
 
-/* Botões */
+/* Botões globais */
 button {
     cursor: pointer;
     border: none;
@@ -276,3 +288,37 @@ button {
 button:hover {
     opacity: 0.9;
 }
+
+.error-message {
+    background-color: #ffecec;
+    color: #b00020;
+    border: 1px solid #f5c2c7;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.success-message {
+    background-color: #e6ffed;
+    color: #0a8f00;
+    border: 1px solid #a2e5b1;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.lista-notas button:disabled {
+    color: #dd270f;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+

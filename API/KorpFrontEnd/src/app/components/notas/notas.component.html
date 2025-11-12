@@ -1,11 +1,11 @@
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+
 <div class="notas-page">
 
   <div *ngIf="loading" class="overlay">
     <div class="spinner">Processando...</div>
   </div>
-
-  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
-
   <section class="criar-nota card">
     <h3>Criar nova nota</h3>
     <div>
@@ -17,7 +17,8 @@
       <div *ngFor="let it of itens; let i = index" class="item-row">
         <select [(ngModel)]="it.produtoId" name="produto{{i}}" (change)="onProdutoChange(i)">
           <option [ngValue]="undefined">-- selecione produto --</option>
-          <option *ngFor="let p of produtos" [value]="p.codigo">{{p.codigo}} - {{p.descricao}} (saldo: {{p.saldo}})</option>
+          <option *ngFor="let p of produtos" [value]="p.codigo">{{p.codigo}} - {{p.descricao}} (saldo: {{p.saldo}})
+          </option>
         </select>
 
         <input type="number" [(ngModel)]="it.quantidade" min="1" />
@@ -26,6 +27,8 @@
       </div>
 
       <button (click)="adicionarItem()" type="button">Adicionar item</button>
+
+    
     </div>
 
     <div class="actions">
@@ -34,7 +37,6 @@
   </section>
 
   <section class="lista-notas card">
-    <h3>Notas existentes</h3>
     <table *ngIf="notas.length; else semNotas" class="table">
       <thead>
         <tr>
@@ -51,7 +53,8 @@
           <td>{{ n.status }}</td>
           <td>
             <button (click)="verItens(n)">Ver Itens</button>
-            <button (click)="fecharNota(n.numero)" [disabled]="n.status !== 'Aberta' || loading">Imprimir / Fechar</button>
+            <button (click)="fecharNota(n.numero)" [disabled]="n.status !== 'Aberta' || loading">Imprimir /
+              Fechar</button>
           </td>
         </tr>
       </tbody>
@@ -63,9 +66,9 @@
   </section>
 
   <!-- Modal de detalhes -->
-   
+
   <div *ngIf="notaSelecionada" class="overlay">
-    
+
     <div class="modal card">
       <button class="close-btn" (click)="fecharModal()">×</button>
       <br>
@@ -78,5 +81,20 @@
             <th>Quantidade</th>
           </tr>
         </thead>
-        
+
         <tbody>
+
+        <tr *ngFor="let item of itensDaNota">
+          <td>{{ item.codigoProduto }}</td>
+          <td>{{ item.descricaoProduto }}</td>
+          <td>{{ item.quantidade }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+</div> <!-- fecha notas-page -->

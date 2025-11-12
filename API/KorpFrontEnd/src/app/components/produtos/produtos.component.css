@@ -4,7 +4,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 80px 40px;
+    padding: 80px 60px;
+    /* aumentei o padding lateral */
     margin-top: 200px;
     gap: 40px;
 }
@@ -12,12 +13,37 @@
 /* Formulário (30%) */
 .form {
     flex: 0 0 30%;
-    /* 30% da largura total */
     background-color: rgb(247, 247, 247);
-    padding: 25px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    height: 570px;
+    height: 370px;
+    /* 🔽 ESSAS LINHAS AQUI */
+    max-height: 70vh;
+    /* limita a altura da lista */
+    overflow-y: auto;
+    /* ativa o scroll vertical */
+    scrollbar-width: thin;
+    /* (opcional) deixa o scroll mais fino */
+    scrollbar-color: #888 #f1f1f1;
+    /* (opcional) cor do scroll */
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo small {
+    color: red;
+    font-size: 13px;
+    margin-top: 3px;
+    margin-left: 4px;
+}
+
+.invalido {
+    border-color: red !important;
+    background-color: #ffecec;
 }
 
 .form h2 {
@@ -38,7 +64,6 @@
 
 .form input {
     width: 100%;
-    /* agora ocupa todo o espaço do container */
     padding: 10px;
     border: 1px solid #cbd5e1;
     border-radius: 6px;
@@ -87,25 +112,25 @@
     width: 9em;
 }
 
-/* Lista (70%) */
+/* Lista*/
 .list {
-    flex: 0 0 70%;
-    /* 70% da largura total */
-    background-color: white;
-    padding: 25px;
+    flex: 0 0 60%;
+    padding: 25px 35px;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-}
-
-.list h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: #1e293b;
-    font-size: 20px;
+    background-color: #ffffff;
+    margin-right: 40px;
+    font-family: "Josefin Sans", sans-serif;
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
 }
 
 /* Tabela */
 table {
+    margin: auto;
+    border-radius: 20px;
     width: 100%;
     border-collapse: collapse;
 }
@@ -123,6 +148,15 @@ th {
     font-weight: 600;
 }
 
+th:first-child {
+    border-top-left-radius: 10px;
+}
+
+th:last-child {
+    border-top-right-radius: 10px;
+}
+
+
 td {
     font-size: 17px;
     font-family: "Josefin Sans", sans-serif;
@@ -137,7 +171,7 @@ tbody tr:hover {
 
 /* Botão de Ações na lista */
 .list button {
-    --color: #a90600;
+    --color: #0049a9;
     --color2: rgb(10, 25, 30);
     padding: 0.8em 1.75em;
     background-color: transparent;
@@ -178,4 +212,49 @@ tbody tr:hover {
 
 .list button:hover::before {
     transform: skew(45deg) rotate(180);
+}
+
+
+/* Validação  */
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo small {
+    color: red;
+    font-size: 13px;
+    margin-top: 3px;
+    margin-left: 4px;
+}
+
+.invalido {
+    border-color: red !important;
+    background-color: #ffecec;
+}
+
+.error-message {
+    background-color: #ffecec;
+    color: #b00020;
+    border: 1px solid #f5c2c7;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.success-message {
+    background-color: #e6ffed;
+    color: #0a8f00;
+    border: 1px solid #a2e5b1;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }

@@ -16,6 +16,10 @@ export class ProdutosComponent implements OnInit {
   editando: boolean = false;
   codigoEditando: number | null = null;
 
+  // 🔔 Mensagens de feedback
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
+
   constructor(private produtoService: ProdutoService) {}
 
   ngOnInit() {
@@ -23,30 +27,53 @@ export class ProdutosComponent implements OnInit {
   }
 
   listar() {
-    this.produtoService.listar().subscribe((dados) => (this.produtos = dados));
+    this.produtoService.listar().subscribe({
+      next: (dados) => (this.produtos = dados),
+      error: (erro) => {
+        console.error('Erro ao listar produtos:', erro);
+        this.errorMessage = 'Erro ao carregar produtos. Verifique se a API está rodando.';
+        this.limparMensagens();
+      },
+    });
   }
 
   cadastrar() {
-    this.produtoService.cadastrar(this.novo).subscribe(() => {
-      this.novo = { codigo: 0, descricao: '', saldo: 0 };
-      this.listar();
+    this.produtoService.cadastrar(this.novo).subscribe({
+      next: () => {
+        this.successMessage = 'Produto cadastrado com sucesso!';
+        this.novo = { codigo: 0, descricao: '', saldo: 0 };
+        this.listar();
+        this.limparMensagens();
+      },
+      error: (erro) => {
+        console.error('Erro ao cadastrar produto:', erro);
+        this.errorMessage = 'Erro ao cadastrar produto. Verifique os dados e tente novamente.';
+        this.limparMensagens();
+      },
     });
   }
 
   editar(produto: any) {
     this.editando = true;
     this.codigoEditando = produto.codigo;
-    this.novo = { ...produto }; // carrega os dados no formulário
+    this.novo = { ...produto };
   }
 
   salvar() {
     if (this.editando && this.codigoEditando !== null) {
-      this.produtoService
-        .atualizar(this.codigoEditando, this.novo)
-        .subscribe(() => {
+      this.produtoService.atualizar(this.codigoEditando, this.novo).subscribe({
+        next: () => {
+          this.successMessage = 'Produto atualizado com sucesso!';
           this.cancelarEdicao();
           this.listar();
-        });
+          this.limparMensagens();
+        },
+        error: (erro) => {
+          console.error('Erro ao atualizar produto:', erro);
+          this.errorMessage = 'Erro ao atualizar produto. Tente novamente.';
+          this.limparMensagens();
+        },
+      });
     } else {
       this.cadastrar();
     }
@@ -59,6 +86,27 @@ export class ProdutosComponent implements OnInit {
   }
 
   excluir(codigo: number) {
-    this.produtoService.excluir(codigo).subscribe(() => this.listar());
+    if (!confirm('Tem certeza que deseja excluir este produto?')) return;
+
+    this.produtoService.excluir(codigo).subscribe({
+      next: () => {
+        this.successMessage = 'Produto excluído com sucesso!';
+        this.listar();
+        this.limparMensagens();
+      },
+      error: (erro) => {
+        console.error('Erro ao excluir produto:', erro);
+        this.errorMessage = 'Erro ao excluir produto. Verifique se ele ainda existe.';
+        this.limparMensagens();
+      },
+    });
+  }
+
+  // ⏳ Limpa mensagens automaticamente após alguns segundos
+  limparMensagens() {
+    setTimeout(() => {
+      this.errorMessage = null;
+      this.successMessage = null;
+    }, 4000);
   }
 }

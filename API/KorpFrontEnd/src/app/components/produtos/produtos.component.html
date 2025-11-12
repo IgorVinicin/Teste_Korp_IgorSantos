@@ -1,13 +1,73 @@
+<!-- Mensagens de feedback -->
+<div *ngIf="successMessage" class="success-message">
+  ✅ {{ successMessage }}
+</div>
+
+<div *ngIf="errorMessage" class="error-message">
+  ⚠️ {{ errorMessage }}
+</div>
+
 <div class="container">
   <div class="form">
     <h2>{{ editando ? 'Editar Produto' : 'Cadastrar Produto' }}</h2>
 
-    <form (ngSubmit)="salvar()">
-      <input type="number" [(ngModel)]="novo.codigo" name="codigo" placeholder="Código" required />
-      <input type="text" [(ngModel)]="novo.descricao" name="descricao" placeholder="Descrição" required />
-      <input type="number" [(ngModel)]="novo.saldo" name="saldo" placeholder="Saldo" required />
+    <form #formProduto="ngForm" (ngSubmit)="salvar()" novalidate>
+      <!-- Código -->
+      <div class="campo">
+        <input
+          type="number"
+          [(ngModel)]="novo.codigo"
+          name="codigo"
+          placeholder="Código"
+          required
+          #codigo="ngModel"
+          [ngClass]="{'invalido': codigo.invalid && codigo.touched}"
+        />
+        <small *ngIf="codigo.invalid && codigo.touched">O código é obrigatório.</small>
+      </div>
 
-      <button type="submit">
+      <!-- Descrição -->
+      <div class="campo">
+        <input
+          type="text"
+          [(ngModel)]="novo.descricao"
+          name="descricao"
+          placeholder="Descrição"
+          required
+          minlength="3"
+          #descricao="ngModel"
+          [ngClass]="{'invalido': descricao.invalid && descricao.touched}"
+        />
+        <small *ngIf="descricao.errors?.['required'] && descricao.touched">
+          A descrição é obrigatória.
+        </small>
+        <small *ngIf="descricao.errors?.['minlength'] && descricao.touched">
+          Mínimo de 3 caracteres.
+        </small>
+      </div>
+
+      <!-- Saldo -->
+      <div class="campo">
+        <input
+          type="number"
+          [(ngModel)]="novo.saldo"
+          name="saldo"
+          placeholder="Saldo"
+          required
+          min="0"
+          #saldo="ngModel"
+          [ngClass]="{'invalido': saldo.invalid && saldo.touched}"
+        />
+        <small *ngIf="saldo.errors?.['required'] && saldo.touched">
+          O saldo é obrigatório.
+        </small>
+        <small *ngIf="saldo.errors?.['min'] && saldo.touched">
+          O saldo não pode ser negativo.
+        </small>
+      </div>
+
+      <!-- Botões -->
+      <button type="submit" [disabled]="formProduto.invalid">
         {{ editando ? 'Salvar Alterações' : 'Cadastrar' }}
       </button>
       <button type="button" *ngIf="editando" (click)="cancelarEdicao()">Cancelar</button>
@@ -15,7 +75,6 @@
   </div>
 
   <div class="list">
-    <h3>Lista de Produtos</h3>
     <table>
       <thead>
         <tr>
