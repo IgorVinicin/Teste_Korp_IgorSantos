@@ -16,7 +16,6 @@ export class ProdutosComponent implements OnInit {
   editando: boolean = false;
   codigoEditando: number | null = null;
 
-  // 🔔 Mensagens de feedback
   errorMessage: string | null = null;
   successMessage: string | null = null;
 
@@ -102,7 +101,6 @@ export class ProdutosComponent implements OnInit {
     });
   }
 
-  // ⏳ Limpa mensagens automaticamente após alguns segundos
   limparMensagens() {
     setTimeout(() => {
       this.errorMessage = null;
